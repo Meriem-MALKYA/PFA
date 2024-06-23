@@ -509,6 +509,7 @@
         </div>
       </footer>
   
+<<<<<<< HEAD
       <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
       <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
       <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
@@ -520,3 +521,15 @@
   
     </body>
   </html>
+=======
+{% block content %}
+   <h2>Bienvenue!</h2>
+   {% if user.is_authenticated %}
+      Hi {{ user.username }}!
+      <a href="/signout" class="btn btn-danger">Logout</a>
+    {% else %}
+      <a href="/signin" class="btn btn-primary"><span class="glyphicon glyphicon-log-in"></span>Login</a> 
+      <a href="/signup" class="btn btn-success">Signup</a>
+    {% endif %}
+{% endblock %}
+>>>>>>> origin/master
