@@ -1,0 +1,40 @@
+<!-- {% extends 'base.html' %}
+  
+{% block title %}Login{% endblock %}
+  
+{% block content %}
+   <h2>Welcome!</h2>
+   {% if user.is_authenticated %}
+      Hi {{ user.username }}!
+      <a href="/signout" class="btn btn-danger">Logout</a>
+    {% else %}
+      <a href="/signin" class="btn btn-primary"><span class="glyphicon glyphicon-log-in"></span>Login</a> 
+      <a href="/signup" class="btn btn-success">Signup</a>
+    {% endif %}
+{% endblock %} -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accueil</title>
+</head>
+<body>
+    <h1>Bienvenue sur notre boutique !</h1>
+    
+    <div class="products">
+        {% for product in products %}
+        <div class="product">
+            <h3>{{ product.name }}</h3>
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <p>Description: {{ product.description }}</p>
+            <p>Prix: ${{ product.price }}</p>
+            <a href="{% url 'product_detail' product.slug %}">Voir le produit</a>
+        </div>
+        {% empty %}
+        <p>Aucun produit disponible pour le moment.</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

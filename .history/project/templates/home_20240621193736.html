@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accueil</title>
+</head>
+<body>
+    <h1>Bienvenue sur notre boutique !</h1>
+
+    {% if user.is_authenticated %}
+        Hi {{ user.username }}!
+        <a href="/signout" class="btn btn-danger">Logout</a>
+    {% else %}
+        <a href="/signin" class="btn btn-primary">Login</a>
+        <a href="/signup" class="btn btn-success">Signup</a>
+    {% endif %}
+    
+    <div class="products mt-5">
+        {% for product in products %}
+            <div class="product card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{{ product.image.url }}" class="card-img" alt="{{ product.name }}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">Description: {{ product.description }}</p>
+                            <p class="card-text">Prix: ${{ product.price }}</p>
+                            <p class="card-text">Stock: {{ product.stock }}</p>
+                            <p class="card-text">Disponible: {% if product.available %} Oui {% else %} Non {% endif %}</p>
+                            <!-- Ajoutez d'autres informations ici selon vos besoins -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>Aucun produit disponible pour le moment.</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

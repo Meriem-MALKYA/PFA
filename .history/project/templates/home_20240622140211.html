@@ -1,0 +1,36 @@
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bijoux</title>
+</head>
+<body>
+    <h1>Catégories de Bijoux</h1>
+    {% for category in categories %}
+        <div>
+            <h2>{{ category.name }}</h2>
+            <p>{{ category.description }}</p>
+            <img src="{{ category.image.url }}" alt="{{ category.name }}">
+            <h3>Produits:</h3>
+            {% for product in category.products.all %}
+                <div>
+                    <h4>{{ product.name }}</h4>
+                    <p>{{ product.description }}</p>
+                    <p>Prix: {{ product.price }} €</p>
+                    <p>Prix après remise: {{ product.final_price }} €</p>
+                    <p>Stock: {{ product.stock }}</p>
+                    <p>Remise: {{ product.discount }}%</p>
+                    <p>Tailles: {{ product.sizes }}</p>
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</body>
+</html>
+

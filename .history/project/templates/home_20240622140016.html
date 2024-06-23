@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .product {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Bienvenue sur notre boutique !</h1>
+
+  
+
+        <!-- Affichage des produits -->
+        <div class="row mt-5">
+            {% for product in products %}
+                <div class="col-md-4">
+                    <div class="card product">
+                      <img src="{{ product.image_url }}" class="card-img" alt="{{ product.name }}">
+
+                       
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">Description: {{ product.description }}</p>
+                            <p class="card-text">Prix: ${{ product.price }}</p>
+                            <p class="card-text">Stock: {{ product.stock }}</p>
+                            <p class="card-text">Disponible: {% if product.available %} Oui {% else %} Non {% endif %}</p>
+                            <!-- Ajoutez d'autres informations ici selon vos besoins -->
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-md-12">
+                    <p>Aucun produit disponible pour le moment.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS et jQuery (nécessaires pour Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
