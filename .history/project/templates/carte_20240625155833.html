@@ -1,0 +1,29 @@
+<!-- cart.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Panier</title>
+    <!-- Vos styles et scripts ici -->
+</head>
+<body>
+    <h1>Mon Panier</h1>
+    <div class="cart-items">
+        {% if cart %}
+            <ul>
+                {% for product_id, item in cart.items %}
+                    <li>
+                        <img src="{{ item.image }}" alt="{{ item.name }}">
+                        <p>Nom du produit: {{ item.name }}</p>
+                        <p>Quantité: {{ item.quantity }}</p>
+                        <p>Prix: {{ item.price }} $</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Votre panier est vide.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
